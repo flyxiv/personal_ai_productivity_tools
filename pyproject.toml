@@ -2,12 +2,12 @@
 name = "personal-ai-productivity-tools"
 version = "0.1.0"
 description = "Personal AI productivity tools for daily tasks"
-requires-python = ">=3.8"
+requires-python = ">=3.13"
 dependencies = [
-    "google-generativeai",
-    "google-cloud-storage",
-    "resend",
-    "pyyaml",
+    "google-generativeai==0.8.5",
+    "google-cloud-storage==3.2.0",
+    "resend==2.11.0",
+    "PyYAML==6.0.2",
 ]
 
 [build-system]
