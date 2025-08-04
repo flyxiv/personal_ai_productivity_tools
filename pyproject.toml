@@ -1,0 +1,15 @@
+[project]
+name = "personal-ai-productivity-tools"
+version = "0.1.0"
+description = "Personal AI productivity tools for daily tasks"
+requires-python = ">=3.8"
+dependencies = [
+    "google-generativeai",
+    "google-cloud-storage",
+    "resend",
+    "pyyaml",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build" 
