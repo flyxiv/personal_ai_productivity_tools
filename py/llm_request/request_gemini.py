@@ -1,10 +1,18 @@
 import yaml
 import google.generativeai as genai
+import os
 from enum import Enum
 
-with open('config/api_keys.yml', 'r') as file:
-    api_keys = yaml.safe_load(file)
-    gemini_api_key = api_keys['gemini_api_key']
+# Load API key from environment variable or config file
+def get_gemini_api_key():
+    if os.getenv('GEMINI_API_KEY'):
+        return os.getenv('GEMINI_API_KEY')
+    else:
+        with open('config/api_keys.yml', 'r') as file:
+            api_keys = yaml.safe_load(file)
+            return api_keys['gemini_api_key']
+
+gemini_api_key = get_gemini_api_key()
 
     
 class GeminiModels(Enum):

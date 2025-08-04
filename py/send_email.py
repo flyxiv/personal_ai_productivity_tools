@@ -1,11 +1,17 @@
 import yaml
 import resend
+import os
 
-with open('config/api_keys.yml', 'r') as file:
-    api_keys = yaml.safe_load(file)
+# Load API key from environment variable or config file
+def get_resend_api_key():
+    if os.getenv('RESEND_API_KEY'):
+        return os.getenv('RESEND_API_KEY')
+    else:
+        with open('config/api_keys.yml', 'r') as file:
+            api_keys = yaml.safe_load(file)
+            return api_keys['resend_api_key']
 
-
-resend.api_key = api_keys['resend_api_key']
+resend.api_key = get_resend_api_key()
 
 def send_email(to_email, email_title, email_html_content):
     resend.Emails.send({
