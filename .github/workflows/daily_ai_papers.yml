@@ -2,8 +2,8 @@ name: Daily AI Papers
 
 on:
   schedule:
-    # Runs every day at 1:00 AM UTC
-    - cron: '0 1 * * *'
+    # Runs every day at 16:00 AM UTC(1:00 AM KST)
+    - cron: '0 16 * * *'
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
     - name: Run daily AI papers script
       run: |
         cd py
-        python -m py.jobs.daily_ai_papers
+        python -m jobs.daily_ai_papers
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
