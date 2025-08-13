@@ -16,7 +16,7 @@ resend.api_key = get_resend_api_key()
 def send_email(to_email, email_title, email_html_content):
     resend.Emails.send({
         "from": "ns090200@resend.dev",
-        "to": 'ns090200@gmail.com',
+        "to": to_email,
         "subject": email_title,
         "html": email_html_content
     })
