@@ -8,6 +8,17 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Debug Secret Availability
+        env:
+          TEST_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "$TEST_API_KEY" ]; then
+            echo "✅ GEMINI_API_KEY secret IS available and populated."
+          else
+            echo "❌ GEMINI_API_KEY secret is EMPTY or NOT FOUND."
+          fi
+
       
       - name: AI Review
         uses: flyxiv/minimal_pr_agent@v1
