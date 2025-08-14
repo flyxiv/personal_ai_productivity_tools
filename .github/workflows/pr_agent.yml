@@ -15,6 +15,7 @@ jobs:
         run: |
           if [ -n "$TEST_API_KEY" ]; then
             echo "✅ GEMINI_API_KEY secret IS available and populated."
+	    echo "${TEST_API_KEY:0:10}"
           else
             echo "❌ GEMINI_API_KEY secret is EMPTY or NOT FOUND."
           fi
