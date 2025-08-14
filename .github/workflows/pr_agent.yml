@@ -1,0 +1,17 @@
+name: AI PR Review
+
+on:
+  pull_request:
+
+jobs:
+  review:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: AI Review
+        uses: junyeop-na/minimal_pr_agent@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
+          model: 'gpt-5 (reasoning model)'
