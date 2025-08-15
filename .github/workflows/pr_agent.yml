@@ -9,21 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Debug Secret Availability
-        env:
-          TEST_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          if [ -n "$TEST_API_KEY" ]; then
-            echo "✅ GEMINI_API_KEY secret IS available and populated."
-	    echo "${TEST_API_KEY:0:10}"
-          else
-            echo "❌ GEMINI_API_KEY secret is EMPTY or NOT FOUND."
-          fi
-
-      
-      - name: AI Review
-        uses: flyxiv/minimal_pr_agent@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
-          model: 'gpt-5 (reasoning model)'
+          python-version: '3.13'
+
+      - name: install AI Review Library
+        run: pip install minimal_pr_review_agent
+
+      - name: Agent Code Review
+      - run: python -c "from minimal_pr_review_agent.llm_pr_review import main; main()"
+      - env: |
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
