@@ -32,7 +32,7 @@ jobs:
     - name: Run daily python open source repositories script
       run: |
         cd py
-        python -m jobs.daily_advanced_python_open_source_repositories
+        python -m jobs.daily_python_open_source_repositories
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
